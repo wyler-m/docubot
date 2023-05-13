@@ -5,13 +5,13 @@ Create a chatbot that can respond with specific information from any number of d
 It works like this: 
 
 - Spin up the database (default here is MongoDB)
-- Insert your document or document fragments into the database. Since a large language model is used to synthesize answers, you need to have a bit of foresight when breaking the docs into fragments. Creating fragments that don't have enough context to be useful in and of themselves tend to be more harmful than helpful
+- Insert your document or document fragments into the database. Since a LLM is used to synthesize answers, you need to have a bit of foresight when breaking the docs into fragments. Creating fragments that don't have enough context to be useful in and of themselves tend to decrease answer quality.
 - Once all the documents/document fragments are inserted, retrieve the text embeddings for each one, saving the embedding with the document.
 - Make an index of all the embeddings. Indexing and search here uses the [Faiss](https://github.com/facebookresearch/faiss) library. 
 - Launch the bot. When a message (we assume its a query) is received by it does the following:
   - Gets a text embedding for the query
   - Use the index of embeddings and the embedding for the query to retrieve documents that are semantically related to the query
-  - Concatenate the query, the similar documents, and some instructions into a prompt to send to a large language model. Here we use one of the GPT modesl from OpenAI
+  - Concatenate the query, the similar documents, and some instructions into a prompt to send to a LLM. Here we use one of the GPT models from OpenAI
   - Log the query and response in the database
   - Return query to the user as a message from the bot.
   - Thumbs Up / Thumbs Down button on the response message allows users to give feedback on the response quality. Responses are recorded as well.
