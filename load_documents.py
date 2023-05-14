@@ -9,12 +9,12 @@ def upload_to_mongo(data):
                      username=mongoConnection["login"], 
                      password=mongoConnection["password"]
                      ) as client:
-        db = client["db"]
-        collection = db["cloudblue"]
+        db = client[mongoConnection["database"]]
+        collection = db[mongoConnection["collection"]]
         # insert data
         collection.insert_one(data)
 
-def count_tokens(text:str)->int:
+def count_tokens(text:str) -> int:
     encoding = tiktoken.encoding_for_model("text-embedding-ada-002")
     return len(encoding.encode(text))
 
@@ -30,7 +30,6 @@ def split_text(text:str, MAX_TOKENS) -> list:
 if __name__ == "__main__":
     
     MAX_TOKENS = 512
-
     documents = ["**some","list", "of", "documents**"]
 
     for document in documents:
