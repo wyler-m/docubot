@@ -7,6 +7,7 @@ import json
 from configsecrets import telegram_apitoken
 
 WELCOME_MESSAGE = "Welcome to the chatter. Please enter a query to get started."
+ERROR_MESSAGE = "Oh No! Something went wrong with the request. The error has been logged. Please try again or contact the administrator.  
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -46,7 +47,7 @@ async def query_on_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         response, processed_query = respond_to_query(query)
     except Exception:
-        response = "Oh no, something went wrong. Please contact @original_wyler and tell him to get his act together"
+        response = ERROR_MESSAGE
         inserted_id = save_query(query,chat_id,user_id,"ERROR")
     try:
         inserted_id = save_query(query,chat_id,user_id,response,processed_query)
