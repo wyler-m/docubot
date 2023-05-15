@@ -31,13 +31,15 @@ Assumes you have:
 Create the file `configsecrets.py` with the following secrets:
 
 ```
-mongoConnection = { "login":"root",
-					"password":"root",
-					"host":"localhost",
-					"port":27017,
-					"appName":"<appname>",
-					"db":"<db name>",
-					"collection":"<db name>" }
+mongoConnection = { 	
+		"login":"root",
+		"password":"root",
+		"host":"localhost",
+		"port":27017,
+		"appName":"<appname>",
+		"db":"<db name>",
+		"collection":"<db name>" 
+		}
 telegram_apitoken = "<telegram bot token>"
 openai_apikey = "<API key for Openai>"
 ```
