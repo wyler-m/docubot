@@ -9,7 +9,7 @@ def upload_to_mongo(data):
                      username=mongoConnection["login"], 
                      password=mongoConnection["password"]
                      ) as client:
-        db = client[mongoConnection["database"]]
+        db = client[mongoConnection["db"]]
         collection = db[mongoConnection["collection"]]
         # insert data
         collection.insert_one(data)
